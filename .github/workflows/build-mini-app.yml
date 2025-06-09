@@ -15,27 +15,26 @@ jobs:
       - name: Extract appId & version
         id: vars
         run: |
-          echo "app_id=$(jq -r .appId mini-app-template/manifest.json)" >> \$GITHUB_OUTPUT
-          echo "version=$(jq -r .version mini-app-template/manifest.json)" >> \$GITHUB_OUTPUT
+          echo "app_id=$(jq -r .appId mini-app-template/manifest.json)" >> $GITHUB_OUTPUT
+          echo "version=$(jq -r .version mini-app-template/manifest.json)" >> $GITHUB_OUTPUT
 
-     - name: Debug registry creds
-       shell: bash
-       run: |
-         echo "REGISTRY_USERNAME='${{ secrets.REGISTRY_USERNAME }}'"
-         echo -n "REGISTRY_PASSWORD length: "
-         echo -n "${{ secrets.REGISTRY_PASSWORD }}" | wc -c
-
-      - name: Log in to Docker Hub
-            shell: bash
-       run: |
-         echo "→ Attempting manual docker login…"
-         echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login docker.io \
-           --username "${{ secrets.REGISTRY_USERNAME }}" \
-           --password-stdin \
-           --debug
+      - name: Manual Docker login
+        shell: bash
+        run: |
+          echo "Logging in with:"
+          echo "  USER= '${{ secrets.REGISTRY_USERNAME }}'"
+          # Mask your password in the logs
+          echo -n "  PASS_LEN=" 
+          echo -n "${{ secrets.REGISTRY_PASSWORD }}" | wc -c
+          echo
+          echo "${{ secrets.REGISTRY_PASSWORD }}" \
+            | docker login docker.io \
+                --username "${{ secrets.REGISTRY_USERNAME }}" \
+                --password-stdin \
+                --debug
 
       - name: Build & push Docker image
         run: |
-          IMAGE=docker.io/\${{ secrets.REGISTRY_USERNAME }}/\${{ steps.vars.outputs.app_id }}:\${{ steps.vars.outputs.version }}
-          docker build -t \$IMAGE mini-app-template
-          docker push     \$IMAGE
+          IMAGE=docker.io/${{ secrets.REGISTRY_USERNAME }}/${{ steps.vars.outputs.app_id }}:${{ steps.vars.outputs.version }}
+          docker build -t $IMAGE mini-app-template
+          docker push     $IMAGE
