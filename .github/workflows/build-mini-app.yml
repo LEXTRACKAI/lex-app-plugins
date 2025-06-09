@@ -26,11 +26,13 @@ jobs:
          echo -n "${{ secrets.REGISTRY_PASSWORD }}" | wc -c
 
       - name: Log in to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          registry: docker.io
-          username: \${{ secrets.REGISTRY_USERNAME }}
-          password: \${{ secrets.REGISTRY_PASSWORD }}
+            shell: bash
+       run: |
+         echo "→ Attempting manual docker login…"
+         echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login docker.io \
+           --username "${{ secrets.REGISTRY_USERNAME }}" \
+           --password-stdin \
+           --debug
 
       - name: Build & push Docker image
         run: |
