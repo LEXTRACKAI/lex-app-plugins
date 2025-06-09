@@ -1,0 +1,11 @@
+cat > mini-app-template/manifest.json << 'EOF'
+{
+  "appId":      "hello-world",
+  "version":    "0.1.0",
+  "name":       "Hello World",
+  "description":"A simple hello-world mini-app",
+  "iconUrl":    "https://via.placeholder.com/64",
+  "entryPoint": "http://localhost:5000",
+  "routes":     ["/apps/hello-world"]
+}
+EOF
