@@ -1,4 +1,4 @@
-name: Build & Push Mini-App
+name: Build & Push Mini-App to GHCR
 
 on:
   push:
@@ -9,32 +9,29 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      # 1. Check out your code
+      - uses: actions/checkout@v3
 
-      - name: Extract appId & version
-        id: vars
+      # 2. Extract appId & version
+      - id: vars
         run: |
           echo "app_id=$(jq -r .appId mini-app-template/manifest.json)" >> $GITHUB_OUTPUT
           echo "version=$(jq -r .version mini-app-template/manifest.json)" >> $GITHUB_OUTPUT
 
-      - name: Manual Docker login
-        shell: bash
-        run: |
-          echo "Logging in with:"
-          echo "  USER= '${{ secrets.REGISTRY_USERNAME }}'"
-          # Mask your password in the logs
-          echo -n "  PASS_LEN=" 
-          echo -n "${{ secrets.REGISTRY_PASSWORD }}" | wc -c
-          echo
-          echo "${{ secrets.REGISTRY_PASSWORD }}" \
-            | docker login docker.io \
-                --username "${{ secrets.REGISTRY_USERNAME }}" \
-                --password-stdin \
-                --debug
+      # 3. Log in to GHCR
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build & push Docker image
-        run: |
-          IMAGE=docker.io/${{ secrets.REGISTRY_USERNAME }}/${{ steps.vars.outputs.app_id }}:${{ steps.vars.outputs.version }}
-          docker build -t $IMAGE mini-app-template
-          docker push     $IMAGE
+      # 4. Build & push
+      - name: Build & push Docker image to GHCR
+        uses: docker/build-push-action@v3
+        with:
+          context: mini-app-template
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/lex-app-plugins/${{ steps.vars.outputs.app_id }}:${{ steps.vars.outputs.version }}
+            ghcr.io/${{ github.repository_owner }}/lex-app-plugins/${{ steps.vars.outputs.app_id }}:latest
