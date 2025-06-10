@@ -1,0 +1,24 @@
+# Node dependencies
+node_modules/
+
+# Mac OS metadata
+*.DS_Store
+
+# Temporary files
+*~
+*.swp
+*.swo
+
+# Docker build output
+build/
+docker-build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Other environment files
+.env
+.env.*
+
