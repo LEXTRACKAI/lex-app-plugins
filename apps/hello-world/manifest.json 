@@ -1,4 +1,4 @@
-cat > mini-app-template/manifest.json << 'EOF'
+cat > apps/hello-world/manifest.json << 'EOF'
 {
   "appId":      "hello-world",
   "version":    "0.1.0",
