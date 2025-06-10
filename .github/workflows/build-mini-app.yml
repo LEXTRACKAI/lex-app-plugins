@@ -1,5 +1,5 @@
 # .github/workflows/build-mini-app.yml
-name: Build & Push Mini-App to GHCR
+name: Build, Push & Deploy Mini-App to GHCR
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
       - 'mini-app-template/manifest.json'
 
 jobs:
-  build-and-push:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -27,17 +27,26 @@ jobs:
       - name: Build & push Docker image to GHCR
         shell: bash
         run: |
-          # lowercase the owner (Docker tags must be lowercase)
           OWNER="${{ github.repository_owner }}"
           OWNER_LOWER=$(echo "$OWNER" | tr '[:upper:]' '[:lower:]')
           APP="${{ steps.vars.outputs.app_id }}"
           VER="${{ steps.vars.outputs.version }}"
-
           IMAGE="ghcr.io/${OWNER_LOWER}/lex-app-plugins/${APP}"
-
           echo "Building and pushing $IMAGE:$VER and $IMAGE:latest"
           docker buildx build \
             --push \
             --tag "$IMAGE:$VER" \
             --tag "$IMAGE:latest" \
             mini-app-template
+
+      - name: Set up kubeconfig
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'latest'
+
+      - name: Deploy to Kubernetes
+        env:
+          IMAGE: ghcr.io/${{ github.repository_owner }}/lex-app-plugins/${{ steps.vars.outputs.app_id }}:${{ steps.vars.outputs.version }}
+        run: |
+          sed "s|IMAGE_PLACEHOLDER|$IMAGE|" k8s-deployment.yml > k8s.yml
+          kubectl apply -f k8s.yml
