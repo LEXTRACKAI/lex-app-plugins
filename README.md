@@ -10,3 +10,4 @@ Monorepo for Lex App plugin system.
 - **catalog-api** – placeholder for catalog functionality.
 
 A GitHub Actions workflow builds and deploys mini-apps whenever `mini-app-template/manifest.json` changes.
+# force trigger
