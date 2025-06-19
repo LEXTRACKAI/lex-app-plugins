@@ -1,5 +1,16 @@
-# mini-app-template/Dockerfile
-FROM nginx:alpine
-COPY index.html /usr/share/nginx/html/index.html
-# Expose port 80 so your container can be mapped to any host port
-EXPOSE 80
+FROM python:3.10
+
+WORKDIR /app
+
+COPY . .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+EXPOSE 8000
+
+CMD ["python", "main.py"]
+
+
+
+
+
