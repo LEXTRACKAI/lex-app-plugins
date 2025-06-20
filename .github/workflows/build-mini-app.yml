@@ -4,7 +4,7 @@ name: Build, Push & Deploy Mini-App to GHCR
 on:
   push:
     paths:
-      - main
+      - 'mini-app-template/manifest.json'
 
 jobs:
   build-and-deploy:
