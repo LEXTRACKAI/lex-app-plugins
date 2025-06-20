@@ -29,6 +29,9 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Debug Docker tag
+        run: echo "Tag = docker.io/${{ secrets.DOCKERHUB_USERNAME }}/mini-app-template:${{ github.sha }}"
+
       - name: Build and Push Docker image
         uses: docker/build-push-action@v5
         with:
