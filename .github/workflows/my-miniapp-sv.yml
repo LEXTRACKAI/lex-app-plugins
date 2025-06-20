@@ -35,3 +35,4 @@ jobs:
           context: ${{ env.APP_FOLDER }}
           push: ${{ env.PUSH_IMAGE }}
           tags: ${{ env.REGISTRY }}/${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+
