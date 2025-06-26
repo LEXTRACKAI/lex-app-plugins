@@ -1,0 +1,12 @@
+{
+    "chatbot-mini-app": {
+        "id": "chatbot-mini-app",
+        "name": "chatbot-mini-app",
+        "image": "lex/chatbot-mini-app",
+        "image_name": "chatbot-mini-app",
+        "port": 8100,
+        "status": "pending",
+        "container_id": null,
+        "logs": ""
+    }
+}

@@ -1,0 +1,10 @@
+{
+  "chatbot-mini-app": {
+    "id": "chatbot-mini-app",
+    "name": "chatbot-mini-app",
+    "port": 8100,
+    "status": "running",
+    "container_id": "1b01d2abe3896aa2f2acfbee9e9ece9b4933ad2ecf1863b26d8ff06b29223302",
+    "logs": ""
+  }
+}
