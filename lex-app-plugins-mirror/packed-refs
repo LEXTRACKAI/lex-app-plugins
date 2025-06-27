@@ -1,0 +1,17 @@
+# pack-refs with: peeled fully-peeled sorted 
+f001baf72773605667b9c8b123b92cbfd6266287 refs/heads/codex/add-.gitignore-for-common-patterns
+7c6a9230934dc30c9a9a0d9eb4ae8bfd42b8e839 refs/heads/codex/create-/apps-folder-and-move-mini-app-template
+8bd8652fe130bfb85488f9514e4311f71e841d64 refs/heads/codex/find-and-fix-a-bug-in-codebase
+cc3f8f8c5ddd40387641f7278c20583876ef45c9 refs/heads/codex/implement-backend-service-and-ui-for-deployment
+9ac689305d6ab62d04972800ce101ed1a3c53f23 refs/heads/codex/update-setup-and-documentation
+c3dc8dca65cb598d8e836131fc3b67dd4e4906c9 refs/heads/fkll4i-codex/implement-backend-service-and-ui-for-deployment
+c3a66fee4678dae838e0c335d7252b865096013c refs/heads/main
+8bd8652fe130bfb85488f9514e4311f71e841d64 refs/pull/1/head
+f001baf72773605667b9c8b123b92cbfd6266287 refs/pull/2/head
+7c6a9230934dc30c9a9a0d9eb4ae8bfd42b8e839 refs/pull/3/head
+625f414af1fb5d35ef87c1f6849b98bea23a47c4 refs/pull/3/merge
+9ac689305d6ab62d04972800ce101ed1a3c53f23 refs/pull/4/head
+2b5aea21cb295552be4edac3fb5616e72639b214 refs/pull/4/merge
+cc3f8f8c5ddd40387641f7278c20583876ef45c9 refs/pull/5/head
+82dbd698ad8ede8a50beaea64ca29676a918189c refs/pull/5/merge
+c3dc8dca65cb598d8e836131fc3b67dd4e4906c9 refs/pull/6/head
