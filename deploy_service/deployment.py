@@ -6,13 +6,14 @@ import docker
 import uuid
 import json
 import os
+from typing import Optional
+from datetime import datetime
 
 app = FastAPI()
 client = docker.from_env()
 
 REGISTRY_FILE = "app_registry.json"
 
-# Ensure app_registry.json exists
 if not os.path.exists(REGISTRY_FILE):
     with open(REGISTRY_FILE, "w") as f:
         json.dump({}, f)
@@ -25,11 +26,19 @@ def load_registry():
     with open(REGISTRY_FILE) as f:
         return json.load(f)
 
+class Metadata(BaseModel):
+    created_by: str
+    team: str
+    category: str
+
 class DeployRequest(BaseModel):
     name: str
     image: str
     port: int
     image_name: str
+    version: str
+    model: str
+    metadata: Metadata
 
 @app.post("/api/deploy")
 def deploy_app(request: DeployRequest):
@@ -45,14 +54,20 @@ def deploy_app(request: DeployRequest):
         )
 
         registry[app_id] = {
-            "id": app_id,
+            "id": request.name,
             "name": request.name,
             "image": request.image,
+            "image_name": request.image_name,
             "port": request.port,
             "status": "running",
             "container_id": container.id,
-            "logs": ""
+            "version": request.version,
+            "model": request.model,
+            "logs": "",
+            "metadata": request.metadata.dict(),
+            "created_at": datetime.utcnow().isoformat() + "Z"
         }
+
         save_registry(registry)
         return {"message": "App deployed", "app_id": app_id}
 
