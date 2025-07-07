@@ -1,0 +1,95 @@
+/* style.css */
+
+/* Basic Reset + Clean Font */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f0f4f8;
+
+  display: flex;
+  flex-direction: column; /* ✅ so footer stays at bottom */
+  min-height: 100vh;
+}
+
+/* This grows to fill available space */
+.container {
+  background: #fff;
+  padding: 40px 50px;
+  margin: 80px auto 0 auto;  /* ✅ auto center horizontally */
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  width: 90%;
+
+  flex: 1; /* ✅ container grows to push footer down */
+}
+
+h1 {
+  text-align: center;
+  color: #007ACC;
+  margin-bottom: 20px;
+}
+
+textarea {
+  width: 100%;
+  height: 140px;
+  padding: 15px;
+  font-size: 1.1em;
+  border: 2px solid #007ACC;
+  border-radius: 8px;
+  outline: none;
+  resize: vertical;
+  transition: border 0.3s ease;
+}
+
+textarea:focus {
+  border-color: #005a9e;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+button {
+  background: #007ACC;
+  color: #fff;
+  border: none;
+  padding: 12px 40px;
+  font-size: 1.1em;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  display: inline-block; /* ✅ centered inside container */
+}
+
+button:hover {
+  background: #005a9e;
+  transform: translateY(-2px);
+}
+
+h2 {
+  margin-top: 40px;
+  color: #444;
+  font-size: 1.3em;
+}
+
+#result {
+  background: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-top: 10px;
+  border-radius: 8px;
+  min-height: 50px;
+  font-size: 1.2em;
+  line-height: 1.5em;
+  word-wrap: break-word;
+}
+
+footer {
+  text-align: center;
+  margin: 40px 0 20px 0; /* ✅ good spacing at bottom */
+  color: #666;
+  font-size: 0.9em;
+}
