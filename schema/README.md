@@ -1,4 +1,4 @@
-# Lex App – Finalized API Schema (Phase 4)
+# Lex App – API Schema
 
 This schema defines the structure and requirements for all API interactions in the Lex App deployment and monitoring system.
 
