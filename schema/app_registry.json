@@ -1,0 +1,20 @@
+{
+  "chatbot-mini-app": {
+    "id": "chatbot-mini-app",
+    "name": "chatbot-mini-app",
+    "image": "lex/chatbot-mini-app",
+    "image_name": "chatbot-mini-app",
+    "port": 8100,
+    "status": "running",
+    "container_id": "b83f13d2e8",
+    "version": "v1.0",
+    "model": "chatbot-v1.0.pt",
+    "logs": "latest logs path or log stream",
+    "metadata": {
+      "created_by": "developer_name",
+      "team": "NLP",
+      "category": "chatbot"
+    },
+    "created_at": "2025-06-26T13:30:00Z"
+  }
+}
