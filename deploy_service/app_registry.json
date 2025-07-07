@@ -1,12 +1,75 @@
 {
-    "chatbot-mini-app": {
-        "id": "chatbot-mini-app",
-        "name": "chatbot-mini-app",
-        "image": "lex/chatbot-mini-app",
-        "image_name": "chatbot-mini-app",
-        "port": 8100,
-        "status": "pending",
-        "container_id": null,
-        "logs": ""
-    }
+  "chatbot-mini-app": {
+    "id": "chatbot-mini-app",
+    "name": "chatbot-mini-app",
+    "image": "lex/chatbot-mini-app",
+    "image_name": "chatbot-mini-app",
+    "port": 8100,
+    "status": "pending",
+    "container_id": null,
+    "logs": ""
+  },
+  "a2367a58-6465-4bf6-a72c-4d30681f7047": {
+    "id": "a2367a58-6465-4bf6-a72c-4d30681f7047",
+    "name": "chatbot-mini-app",
+    "image": "chatbot_image",
+    "port": 9999,
+    "status": "failed",
+    "logs": "404 Client Error for http+docker://localhost/v1.48/images/create?tag=latest&fromImage=lexchatbot: Not Found (\"pull access denied for lexchatbot, repository does not exist or may require 'docker login'\")",
+    "container_id": null
+  },
+  "8a8fd3f6-27d0-4ede-9d95-bf830445c7c4": {
+    "id": "8a8fd3f6-27d0-4ede-9d95-bf830445c7c4",
+    "name": "chatbot-mini-app",
+    "image": "chatbot_image",
+    "port": 9999,
+    "status": "failed",
+    "logs": "404 Client Error for http+docker://localhost/v1.48/images/create?tag=latest&fromImage=lexchatbot: Not Found (\"pull access denied for lexchatbot, repository does not exist or may require 'docker login'\")",
+    "container_id": null
+  },
+  "54b15b8d-0bec-40ae-b17d-f6eff03b325b": {
+    "id": "54b15b8d-0bec-40ae-b17d-f6eff03b325b",
+    "name": "chatbot-mini-app",
+    "image": "chatbot_image",
+    "port": 9999,
+    "status": "failed",
+    "logs": "409 Client Error for http+docker://localhost/v1.48/containers/create?name=chatbot-mini-app: Conflict (\"Conflict. The container name \"/chatbot-mini-app\" is already in use by container \"1b01d2abe3896aa2f2acfbee9e9ece9b4933ad2ecf1863b26d8ff06b29223302\". You have to remove (or rename) that container to be able to reuse that name.\")",
+    "container_id": null
+  },
+  "f6cf308a-aedb-4148-b807-97f1bc97e41e": {
+    "id": "f6cf308a-aedb-4148-b807-97f1bc97e41e",
+    "name": "chatbot-mini-app",
+    "image": "chatbot_image",
+    "port": 9999,
+    "status": "failed",
+    "logs": "409 Client Error for http+docker://localhost/v1.48/containers/create?name=chatbot-mini-app: Conflict (\"Conflict. The container name \"/chatbot-mini-app\" is already in use by container \"1b01d2abe3896aa2f2acfbee9e9ece9b4933ad2ecf1863b26d8ff06b29223302\". You have to remove (or rename) that container to be able to reuse that name.\")",
+    "container_id": null
+  },
+  "51c3e828-0b5c-4417-8d58-febc01de4473": {
+    "id": "51c3e828-0b5c-4417-8d58-febc01de4473",
+    "name": "chatbot-mini-app",
+    "image": "chatbot_image",
+    "port": 9999,
+    "status": "running",
+    "container_id": "c52c4adaf9e33b701cd83ac142641231454f7b180a1b5d470b615447e6218deb",
+    "logs": ""
+  },
+  "87a4007b-1e2d-42b3-8a54-9f38f99d8bd7": {
+    "id": "87a4007b-1e2d-42b3-8a54-9f38f99d8bd7",
+    "name": "chatbot-mini-app",
+    "image": "chatbot_image",
+    "port": 9999,
+    "status": "failed",
+    "logs": "409 Client Error for http+docker://localhost/v1.48/containers/create?name=chatbot-mini-app: Conflict (\"Conflict. The container name \"/chatbot-mini-app\" is already in use by container \"c52c4adaf9e33b701cd83ac142641231454f7b180a1b5d470b615447e6218deb\". You have to remove (or rename) that container to be able to reuse that name.\")",
+    "container_id": null
+  },
+  "a5956bcc-5ef0-4cde-bc40-1a6017138e79": {
+    "id": "a5956bcc-5ef0-4cde-bc40-1a6017138e79",
+    "name": "chatbot-mini-app",
+    "image": "chatbot_image",
+    "port": 9999,
+    "status": "running",
+    "container_id": "15dfcf059f9c0eeb59acbac2a025bb6e8ee8e52d5754104ff321050a4a68fa76",
+    "logs": ""
+  }
 }
