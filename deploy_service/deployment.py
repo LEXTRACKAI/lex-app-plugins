@@ -90,7 +90,26 @@ def get_app_status(app_id: str):
     app_info = registry.get(app_id)
     if not app_info:
         raise HTTPException(status_code=404, detail="App not found")
-    return {"status": app_info["status"]}
+
+    # Compute uptime
+    try:
+        created_at = datetime.fromisoformat(app_info["created_at"].replace("Z", ""))
+        uptime_seconds = (datetime.utcnow() - created_at).total_seconds()
+        hours = int(uptime_seconds // 3600)
+        minutes = int((uptime_seconds % 3600) // 60)
+        uptime = f"{hours}h {minutes}m"
+    except:
+        uptime = "unknown"
+
+    return {
+        "id": app_info["id"],
+        "name": app_info["name"],
+        "status": app_info["status"],
+        "port": app_info["port"],
+        "image": app_info["image"],
+        "uptime": uptime,
+        "last_checked": datetime.utcnow().isoformat() + "Z"
+    }
 
 @app.get("/api/apps/{app_id}/logs")
 def get_app_logs(app_id: str):
@@ -102,7 +121,10 @@ def get_app_logs(app_id: str):
     try:
         container = client.containers.get(app_info["container_id"])
         logs = container.logs().decode("utf-8")
-        return {"logs": logs}
+        return {
+            "id": app_info["id"],
+            "logs": logs.splitlines()
+        }
     except Exception as e:
         return {"logs": f"Error fetching logs: {e}"}
 
