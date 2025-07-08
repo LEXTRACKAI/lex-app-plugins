@@ -71,5 +71,77 @@
     "status": "running",
     "container_id": "15dfcf059f9c0eeb59acbac2a025bb6e8ee8e52d5754104ff321050a4a68fa76",
     "logs": ""
+  },
+  "84f18e8d-fcc4-4466-847b-262d283777cd": {
+    "id": "chatbot-mini-app",
+    "name": "chatbot-mini-app",
+    "image": "chatbot_image",
+    "port": 8001,
+    "status": "failed",
+    "logs": "409 Client Error for http+docker://localhost/v1.48/containers/create?name=chatbot-mini-app: Conflict (\"Conflict. The container name \"/chatbot-mini-app\" is already in use by container \"15dfcf059f9c0eeb59acbac2a025bb6e8ee8e52d5754104ff321050a4a68fa76\". You have to remove (or rename) that container to be able to reuse that name.\")",
+    "container_id": null
+  },
+  "ea3f29c6-1ca6-4910-b623-3aed2f58048c": {
+    "id": "chatbot-mini-app",
+    "name": "chatbot-mini-app",
+    "image": "chatbot_image",
+    "port": 8001,
+    "status": "failed",
+    "logs": "409 Client Error for http+docker://localhost/v1.48/containers/create?name=chatbot-mini-app: Conflict (\"Conflict. The container name \"/chatbot-mini-app\" is already in use by container \"15dfcf059f9c0eeb59acbac2a025bb6e8ee8e52d5754104ff321050a4a68fa76\". You have to remove (or rename) that container to be able to reuse that name.\")",
+    "container_id": null
+  },
+  "c5454bcf-34b0-472f-9376-b6b84e60b571": {
+    "id": "chatbot-mini-app",
+    "name": "chatbot-mini-app",
+    "image": "chatbot_image",
+    "image_name": "chatbot-mini-app:latest",
+    "port": 8001,
+    "status": "running",
+    "container_id": "7596d3e65e7f5fd0931d9bed4a7657a4ec2de72fc4dcd7311e020d721407c2a3",
+    "version": "v1.0",
+    "model": "chatbot-v1.0.pt",
+    "logs": "",
+    "metadata": {
+      "created_by": "sindhura",
+      "team": "NLP",
+      "category": "chatbot"
+    },
+    "created_at": "2025-07-08T00:46:27.179473Z"
+  },
+  "ebf76e44-0b62-413e-8e7f-3d5e58019daa": {
+    "id": "chatbot-mini-app",
+    "name": "chatbot-mini-app",
+    "image": "chatbot_image",
+    "port": 8002,
+    "status": "failed",
+    "logs": "409 Client Error for http+docker://localhost/v1.48/containers/create?name=chatbot-mini-app: Conflict (\"Conflict. The container name \"/chatbot-mini-app\" is already in use by container \"7596d3e65e7f5fd0931d9bed4a7657a4ec2de72fc4dcd7311e020d721407c2a3\". You have to remove (or rename) that container to be able to reuse that name.\")",
+    "container_id": null
+  },
+  "5e245b24-9cb1-4e52-87d8-f953776ffb59": {
+    "id": "chatbot-mini-app",
+    "name": "chatbot-mini-app",
+    "image": "chatbot_image",
+    "port": 8002,
+    "status": "failed",
+    "logs": "409 Client Error for http+docker://localhost/v1.48/containers/create?name=chatbot-mini-app: Conflict (\"Conflict. The container name \"/chatbot-mini-app\" is already in use by container \"7596d3e65e7f5fd0931d9bed4a7657a4ec2de72fc4dcd7311e020d721407c2a3\". You have to remove (or rename) that container to be able to reuse that name.\")",
+    "container_id": null
+  },
+  "4a5a25d4-e4e3-44c1-a84b-34f7c887028a": {
+    "id": "chatbot-mini-app",
+    "name": "chatbot-mini-app",
+    "image": "chatbot_image",
+    "image_name": "chatbot-mini-app:latest",
+    "port": 8001,
+    "status": "running",
+    "container_id": "5066db43f1007bbba0bad02c939eb1fa651411514638bafc198056f3594fafaf",
+    "version": "v1.0",
+    "model": "chatbot-v1.0.pt",
+    "logs": "",
+    "metadata": {
+      "created_by": "sindhura",
+      "team": "NLP",
+      "category": "chatbot"
+    },
+    "created_at": "2025-07-08T00:57:47.220100Z"
   }
 }

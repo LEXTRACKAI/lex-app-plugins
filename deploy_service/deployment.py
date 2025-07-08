@@ -8,6 +8,7 @@ import json
 import os
 from typing import Optional
 from datetime import datetime
+from port_utils import get_available_port,load_ports, save_ports
 
 app = FastAPI()
 client = docker.from_env()
@@ -45,11 +46,20 @@ def deploy_app(request: DeployRequest):
     app_id = str(uuid.uuid4())
     registry = load_registry()
 
+    # Check if the user specified a port
+    if request.port != 0:  # If the user provided a port
+        used_ports = load_ports().get("used_ports", [])
+        if request.port in used_ports or not is_port_free(request.port):
+            raise HTTPException(status_code=400, detail=f"Port {request.port} is already in use or unavailable.")
+        port = request.port
+    else:
+        port = get_available_port()  # Dynamically allocate a port
+
     try:
         container = client.containers.run(
             image=request.image_name,
             name=request.name,
-            ports={f"{request.port}/tcp": request.port},
+            ports={f"{port}/tcp": port},
             detach=True
         )
 
@@ -58,7 +68,7 @@ def deploy_app(request: DeployRequest):
             "name": request.name,
             "image": request.image,
             "image_name": request.image_name,
-            "port": request.port,
+            "port": port,
             "status": "running",
             "container_id": container.id,
             "version": request.version,
@@ -67,16 +77,15 @@ def deploy_app(request: DeployRequest):
             "metadata": request.metadata.dict(),
             "created_at": datetime.utcnow().isoformat() + "Z"
         }
-
         save_registry(registry)
         return {"message": "App deployed", "app_id": app_id}
 
     except Exception as e:
         registry[app_id] = {
-            "id": app_id,
+            "id": request.name,
             "name": request.name,
             "image": request.image,
-            "port": request.port,
+            "port": port,
             "status": "failed",
             "logs": str(e),
             "container_id": None
