@@ -143,5 +143,50 @@
       "category": "chatbot"
     },
     "created_at": "2025-07-08T00:57:47.220100Z"
+  },
+  "c8823da4-3ade-4a19-8135-dd3606ce0495": {
+    "id": "chatbot-mini-app",
+    "name": "chatbot-mini-app",
+    "image": "chatbot_image",
+    "port": 8002,
+    "status": "failed",
+    "logs": "409 Client Error for http+docker://localhost/v1.48/containers/create?name=chatbot-mini-app: Conflict (\"Conflict. The container name \"/chatbot-mini-app\" is already in use by container \"5066db43f1007bbba0bad02c939eb1fa651411514638bafc198056f3594fafaf\". You have to remove (or rename) that container to be able to reuse that name.\")",
+    "container_id": null
+  },
+  "8b26c90e-5b12-4a27-b193-09f5a9f51a16": {
+    "id": "chatbot-mini-app",
+    "name": "chatbot-mini-app",
+    "image": "chatbot_image",
+    "image_name": "chatbot-mini-app:latest",
+    "port": 8001,
+    "status": "running",
+    "container_id": "a2c74bc93acf184fe123270b694cdb61cd3df2dcbc58acc334063d883ee5c80b",
+    "version": "v1.0",
+    "model": "chatbot-v1.0.pt",
+    "logs": "",
+    "metadata": {
+      "created_by": "sindhura",
+      "team": "NLP",
+      "category": "chatbot"
+    },
+    "created_at": "2025-07-08T01:31:31.851526Z"
+  },
+  "1bba67df-977f-41bb-91d4-0ae10a93234d": {
+    "id": "chatbot-mini-app-2",
+    "name": "chatbot-mini-app-2",
+    "image": "chatbot_image",
+    "image_name": "chatbot-mini-app:latest",
+    "port": 8003,
+    "status": "running",
+    "container_id": "8354631c2bf9037271b42eb7ec83080b9176ad46a0efddc9dba5823f7eefb334",
+    "version": "v1.0",
+    "model": "chatbot-v1.0.pt",
+    "logs": "",
+    "metadata": {
+      "created_by": "sindhura",
+      "team": "NLP",
+      "category": "chatbot"
+    },
+    "created_at": "2025-07-08T01:32:34.172639Z"
   }
 }
