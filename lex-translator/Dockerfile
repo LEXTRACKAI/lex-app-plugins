@@ -7,6 +7,7 @@ WORKDIR /app
 # Copy files
 COPY requirements.txt .
 COPY main.py .
+COPY static /app/static  # Add this line to copy the 'static' directory
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
