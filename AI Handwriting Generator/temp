@@ -1,0 +1,23 @@
+# AI Handwriting Generator ✍️🖋️
+
+This project is a simple web app that converts typed text into realistic handwriting images using a custom handwriting-style `.ttf` font.
+
+## 📌 Tech Stack
+- **Frontend:** React
+- **Backend:** Python Flask + Pillow (PIL)
+- **Font:** Any custom handwriting `.ttf` file
+
+## 📌 How it works
+1. User types any text in the form.
+2. Flask backend generates an image using the font.
+3. The React frontend displays the handwriting image instantly.
+
+## 📌 To Run Locally
+- Backend: Python + Flask
+- Frontend: React + Axios
+- Install dependencies and start both servers
+
+## 📌 Developed by
+**Maliha Eram ❤️**
+
+👉 [See on GitHub](https://github.com/malihaeram11/AI-Handwriting-Generator)
