@@ -1,14 +1,13 @@
-# lex-app-plugins
+# AI Resume Analyzer 📄
 
-Monorepo for Lex App plugin system.
+This mini app lets users paste in their resume and get instant feedback tailored to a specific job title using GPT.
 
-## Services
+### Features
+- GPT-based resume analysis
+- Feedback and scoring dashboard
+- Clean Streamlit interface
 
-- **backend** – REST API for building and deploying mini-apps using Kubernetes.
-- **builder-portal** – React UI to manage deployments.
-- **gateway** – Routes `/apps/{appId}` to the deployed container for that app.
-- **catalog-api** – placeholder for catalog functionality.
-
-A GitHub Actions workflow builds and deploys mini-apps whenever `mini-app-template/manifest.json` changes.
-# force trigger
-# Trigger again
+### Setup
+```bash
+pip install -r requirements.txt
+streamlit run app.py
