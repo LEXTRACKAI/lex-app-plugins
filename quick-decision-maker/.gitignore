@@ -1,0 +1,12 @@
+# API Keys and sensitive config
+config.js
+.env
+*.key
+
+# Temporary files
+*.tmp
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
