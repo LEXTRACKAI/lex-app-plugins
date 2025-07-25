@@ -52,53 +52,55 @@
             </button>
         </div>
 
-        <!-- Results Display (KEEPING OLD IDs + ADDING NEW STRUCTURE) -->
+        <!-- Results Display -->
         <div class="results-container" id="resultsContainer" style="display: none;">
-            <!-- Keep the old results-header for JavaScript compatibility -->
-            <div class="results-header">
-                <h2>AI Recommendation</h2>
-                <div class="confidence-score" id="confidenceScore">
-                    <!-- Keep this for JavaScript compatibility -->
-                </div>
-            </div>
 
-            <!-- NEW: Enhanced Recommendation Header -->
-            <div class="recommendation-header" id="recommendationHeader">
-                <div class="recommendation-badge" id="recommendationBadge">
-                    <span class="recommendation-icon" id="recommendationIcon">🤔</span>
-                    <span class="recommendation-text-new" id="recommendationTextNew">Analyzing...</span>
-                </div>
-                
-                <div class="confidence-circle">
-                    <svg class="progress-ring" width="80" height="80">
-                        <circle class="progress-ring-circle" cx="40" cy="40" r="30"></circle>
-                        <circle class="progress-ring-fill" id="progressRingFill" cx="40" cy="40" r="30"></circle>
-                    </svg>
-                    <div class="confidence-number" id="confidenceNumber">0%</div>
-                </div>
+            <div class="recommendation-header">
+            <div class="recommendation-badge" id="recommendationBadge">
+                <span class="recommendation-icon" id="recommendationIcon">🤔</span>
+                <span class="recommendation-text-new" id="recommendationTextNew">Analyzing...</span>
             </div>
-
-            <!-- Keep OLD elements for JavaScript compatibility -->
-            <div class="recommendation-text" id="recommendationText" style="display: none;">
-                <!-- This stays for JavaScript compatibility -->
+        
+            <div class="confidence-circle">
+                <svg class="progress-ring" width="80" height="80">
+                <circle class="progress-ring-circle" cx="40" cy="40" r="30"></circle>
+                <circle class="progress-ring-fill" id="progressRingFill" cx="40" cy="40" r="30"></circle>
+                </svg>
+                <div class="confidence-number" id="confidenceNumber">0%</div>
             </div>
-
-            <div class="reasoning-section">
-                <h3>Reasoning</h3>
-                <div class="reasoning-text" id="reasoningText">
-                    <!-- Keep this for JavaScript compatibility -->
-                </div>
             </div>
-
+        
+            <div class="analysis-block">
+            <h4>🧠 Analysis</h4>
+            <div class="analysis-paragraph" id="reasoningText">
+                <!-- Detailed reasoning will appear here -->
+            </div>
+            </div>
+        
+            <div class="analysis-block">
+            <h4>📌 Key Factors</h4>
+            <ul id="keyFactorsList" class="key-factors-list">
+                <!-- Key points will go here -->
+            </ul>
+            </div>
+        
+            <div class="analysis-block">
+            <h4>💡 Additional Suggestions</h4>
+            <div id="extraAdvice" class="extra-suggestions">
+                <!-- Suggestions or tips -->
+            </div>
+            </div>
+        
             <div class="actions">
-                <button type="button" id="newDecisionBtn" class="secondary-btn">
-                    Make Another Decision
-                </button>
-                <button type="button" id="saveDecisionBtn" class="primary-btn">
-                    Save Decision
-                </button>
+            <button type="button" id="newDecisionBtn" class="secondary-btn">
+                Make Another Decision
+            </button>
+            <button type="button" id="saveDecisionBtn" class="primary-btn">
+                Save Decision
+            </button>
             </div>
         </div>
+  
 
         <!-- Decision History -->
         <div class="history-container" id="historyContainer" style="display: none;">
@@ -112,5 +114,37 @@
     <!-- Load configuration and main script -->
     <script src="config.js"></script>
     <script src="script.js"></script>
+    
+    <!-- Debug script to check initialization -->
+    <script>
+        // Debug information
+        window.addEventListener('load', function() {
+            console.log('🔍 Page fully loaded');
+            console.log('🔍 CONFIG available:', !!window.CONFIG);
+            console.log('🔍 DecisionMaker available:', !!window.decisionMaker);
+            
+            // Check if button exists and has event listener
+            const btn = document.getElementById('analyzeBtn');
+            console.log('🔍 Analyze button found:', !!btn);
+            
+            if (btn) {
+                // Test button click manually
+                setTimeout(() => {
+                    console.log('🧪 Testing button click...');
+                    btn.click();
+                }, 2000);
+            }
+        });
+        
+        // Manual button test function for debugging
+        function testButton() {
+            console.log('🧪 Manual button test triggered');
+            if (window.decisionMaker) {
+                window.decisionMaker.analyzeDecision();
+            } else {
+                console.error('❌ DecisionMaker not initialized');
+            }
+        }
+    </script>
 </body>
 </html>

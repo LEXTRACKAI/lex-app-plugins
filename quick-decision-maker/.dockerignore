@@ -1,0 +1,14 @@
+.git
+.gitignore
+*.md
+README.md
+.vscode
+.DS_Store
+Thumbs.db
+*.log
+node_modules
+dist/
+build/
+.netlify
+netlify.toml
+Dockerfile.backup
