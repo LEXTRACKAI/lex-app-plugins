@@ -1,0 +1,11 @@
+{
+  "conditions": [
+    {"name":"Common Cold","symptoms":["cough","sneezing","sore throat"]},
+    {"name":"Flu","symptoms":["fever","chills","body ache"]},
+    {"name":"Allergy","symptoms":["sneezing","itchy eyes","runny nose"]},
+    {"name":"Stomach Flu","symptoms":["nausea","vomiting","diarrhea"]}
+  ],
+  "self_care":"Rest, hydrate, and use OTC pain relievers.",
+  "next_steps":"If symptoms worsen after 3 days, consult a healthcare provider.",
+  "medications":["Paracetamol","Ibuprofen","Antihistamines"]
+}
