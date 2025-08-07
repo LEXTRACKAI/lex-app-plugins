@@ -6,8 +6,8 @@ node_modules/
 
 # Temporary files
 *~
-*.swp
-*.swo
+*.swp*
+*.swo*
 
 # Docker build output
 build/
