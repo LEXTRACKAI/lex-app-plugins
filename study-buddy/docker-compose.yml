@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  study-buddy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: study-buddy-app
+    ports:
+      - "8080:80"
+    environment:
+      - NODE_ENV=production
+    volumes:
+      # Optional: Mount config for easy updates
+      - ./config.js:/usr/share/nginx/html/config.js:ro
+    restart: unless-stopped
+    networks:
+      - study-buddy-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.study-buddy.rule=Host(`study-buddy.local`)"
+      - "traefik.http.services.study-buddy.loadbalancer.server.port=80"
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+networks:
+  study-buddy-network:
+    driver: bridge
+
+# Optional: Add volume for persistent data if needed in future
+volumes:
+  study-buddy-data:
+    driver: local

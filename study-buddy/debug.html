@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Buddy API Debug Tool</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f8fafc;
+            line-height: 1.6;
+        }
+        .debug-container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .status-box {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: 600;
+        }
+        .status-success { background: #ecfdf5; color: #166534; border-left: 4px solid #22c55e; }
+        .status-error { background: #fef2f2; color: #dc2626; border-left: 4px solid #ef4444; }
+        .status-warning { background: #fefce8; color: #a16207; border-left: 4px solid #eab308; }
+        .status-info { background: #eff6ff; color: #1e40af; border-left: 4px solid #3b82f6; }
+        
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 10px 10px 10px 0;
+        }
+        button:hover { background: #2563eb; }
+        
+        .test-result {
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #e2e8f0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-container">
+        <h1>🔧 Study Buddy API Debug Tool</h1>
+        <p>Let's test your Gemini API integration step by step:</p>
+        
+        <div id="statusContainer">
+            <div class="status-info">🔍 Checking API configuration...</div>
+        </div>
+        
+        <button onclick="checkAPIConfiguration()">1. Check API Configuration</button>
+        <button onclick="testBasicAPICall()">2. Test Basic API Call</button>
+        <button onclick="testLessonGeneration()">3. Test Lesson Generation</button>
+        <button onclick="checkConsoleErrors()">4. Check Console Errors</button>
+        
+        <div id="testResults"></div>
+        
+        <h3>📋 Debug Checklist:</h3>
+        <div id="debugChecklist">
+            <div>⏳ Loading debug information...</div>
+        </div>
+    </div>
+
+    <!-- Load your existing files -->
+    <script src="config.js"></script>
+    <script src="api.js"></script>
+    
+    <script>
+        // Debug tool functions
+        function addResult(message, type = 'info') {
+            const results = document.getElementById('testResults');
+            const div = document.createElement('div');
+            div.className = 'test-result';
+            div.innerHTML = `<strong>[${new Date().toLocaleTimeString()}]</strong> ${message}`;
+            results.appendChild(div);
+            results.scrollTop = results.scrollHeight;
+        }
+        
+        function updateStatus(message, type = 'info') {
+            const container = document.getElementById('statusContainer');
+            container.innerHTML = `<div class="status-${type}">${message}</div>`;
+        }
+        
+        async function checkAPIConfiguration() {
+            addResult('🔍 Checking API configuration...', 'info');
+            
+            // Check if API files loaded
+            if (typeof window.studyBuddyAPI === 'undefined') {
+                updateStatus('❌ ERROR: api.js file not loaded or StudyBuddyAPI not found', 'error');
+                addResult('❌ api.js file is missing or not loaded properly');
+                return;
+            }
+            
+            // Check if API is configured
+            if (!window.studyBuddyAPI.isEnabled) {
+                updateStatus('⚠️ WARNING: Gemini API not enabled - using fallback content', 'warning');
+                addResult('⚠️ Gemini API is not enabled. Check your API key in config.js');
+                
+                // Show current key status (masked)
+                const keyLength = window.studyBuddyAPI.geminiKey ? window.studyBuddyAPI.geminiKey.length : 0;
+                addResult(`🔑 API Key length: ${keyLength} characters ${keyLength > 0 ? '(Key present)' : '(No key found)'}`);
+                return;
+            }
+            
+            updateStatus('✅ SUCCESS: API configuration looks good!', 'success');
+            addResult('✅ StudyBuddyAPI is loaded and enabled');
+            addResult(`🔑 API Key: ${window.studyBuddyAPI.geminiKey ? 'Present (' + window.studyBuddyAPI.geminiKey.length + ' chars)' : 'Missing'}`);
+            addResult(`🌐 API URL: ${window.studyBuddyAPI.geminiURL}`);
+        }
+        
+        async function testBasicAPICall() {
+            addResult('🧪 Testing basic API call...', 'info');
+            
+            if (!window.studyBuddyAPI || !window.studyBuddyAPI.isEnabled) {
+                addResult('❌ Cannot test API - not configured. Run configuration check first.');
+                return;
+            }
+            
+            try {
+                updateStatus('⏳ Making test API call...', 'info');
+                
+                const testPrompt = 'Write a brief 2-sentence explanation of what machine learning is.';
+                const response = await window.studyBuddyAPI.callGemini(testPrompt);
+                
+                updateStatus('✅ SUCCESS: API call worked!', 'success');
+                addResult('✅ API call successful!');
+                addResult(`📝 Response length: ${response.length} characters`);
+                addResult(`📄 Sample response: "${response.substring(0, 100)}${response.length > 100 ? '...' : ''}"`);
+                
+            } catch (error) {
+                updateStatus('❌ ERROR: API call failed', 'error');
+                addResult(`❌ API Error: ${error.message}`);
+                addResult('🔍 Common causes:');
+                addResult('   • Invalid API key');
+                addResult('   • API quota exceeded');
+                addResult('   • Network connectivity issues');
+                addResult('   • CORS policy blocking requests');
+            }
+        }
+        
+        async function testLessonGeneration() {
+            addResult('📚 Testing lesson generation...', 'info');
+            
+            if (!window.studyBuddyAPI || !window.studyBuddyAPI.isEnabled) {
+                addResult('❌ Cannot test lesson generation - API not configured.');
+                return;
+            }
+            
+            try {
+                updateStatus('⏳ Generating test lesson...', 'info');
+                
+                const testTopic = 'Photosynthesis';
+                const testDifficulty = 'beginner';
+                
+                const lessonPrompt = `Create a comprehensive beginner lesson about "${testTopic}". 
+
+**📖 INTRODUCTION**
+[Explain what photosynthesis is and why it's important]
+
+**🎯 KEY CONCEPTS** 
+1. [First core concept with explanation]
+2. [Second core concept with explanation] 
+3. [Third core concept with explanation]
+
+**💡 REAL-WORLD EXAMPLES**
+• [Example 1 with details]
+• [Example 2 with details]
+
+**🔑 IMPORTANT FACTS**
+• [Key fact 1]
+• [Key fact 2]
+
+Make this factual, educational, and engaging for beginners. 400-500 words total.`;
+                
+                const lesson = await window.studyBuddyAPI.callGemini(lessonPrompt);
+                
+                updateStatus('✅ SUCCESS: Lesson generation worked!', 'success');
+                addResult('✅ Lesson generated successfully!');
+                addResult(`📝 Lesson length: ${lesson.length} characters`);
+                addResult(`📄 Lesson preview: "${lesson.substring(0, 200)}${lesson.length > 200 ? '...' : ''}"`);
+                
+                // Test if it contains actual content vs generic text
+                if (lesson.includes('provides several key benefits') || lesson.includes('form the foundation')) {
+                    addResult('⚠️ WARNING: Response appears to be generic template text, not topic-specific content');
+                } else {
+                    addResult('✅ Response appears to contain topic-specific content');
+                }
+                
+            } catch (error) {
+                updateStatus('❌ ERROR: Lesson generation failed', 'error');
+                addResult(`❌ Lesson Generation Error: ${error.message}`);
+            }
+        }
+        
+        function checkConsoleErrors() {
+            addResult('🔍 Checking for console errors...', 'info');
+            addResult('📝 Open your browser Developer Tools (F12) and check the Console tab for any red error messages.');
+            addResult('🔍 Common error patterns to look for:');
+            addResult('   • "Failed to fetch" - Network/CORS issues');
+            addResult('   • "API key not valid" - Invalid key');
+            addResult('   • "403 Forbidden" - API access denied');
+            addResult('   • "429 Too Many Requests" - Quota exceeded');
+            
+            // Try to catch recent errors
+            const originalError = console.error;
+            console.error = function(...args) {
+                addResult(`🚨 Console Error: ${args.join(' ')}`);
+                originalError.apply(console, args);
+            };
+        }
+        
+        // Auto-run initial check
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                runInitialDiagnostics();
+            }, 1000);
+        });
+        
+        function runInitialDiagnostics() {
+            let checklist = [];
+            
+            // Check if files are loaded
+            checklist.push(`📁 config.js: ${typeof window.APP_CONFIG !== 'undefined' ? '✅ Loaded' : '❌ Missing'}`);
+            checklist.push(`📁 api.js: ${typeof window.studyBuddyAPI !== 'undefined' ? '✅ Loaded' : '❌ Missing'}`);
+            
+            // Check API status
+            if (window.studyBuddyAPI) {
+                checklist.push(`🔑 API Enabled: ${window.studyBuddyAPI.isEnabled ? '✅ Yes' : '❌ No'}`);
+                checklist.push(`🔑 API Key: ${window.studyBuddyAPI.geminiKey ? '✅ Present' : '❌ Missing'}`);
+                checklist.push(`🌐 API URL: ${window.studyBuddyAPI.geminiURL ? '✅ Set' : '❌ Missing'}`);
+            }
+            
+            // Check random topic functions
+            checklist.push(`🎲 Random Topics: ${typeof window.getRandomTopicOptions === 'function' ? '✅ Available' : '❌ Missing'}`);
+            
+            document.getElementById('debugChecklist').innerHTML = checklist.map(item => `<div style="margin: 8px 0; padding: 8px; background: #f8fafc; border-radius: 6px;">${item}</div>`).join('');
+            
+            // Auto-run configuration check
+            setTimeout(checkAPIConfiguration, 500);
+        }
+    </script>
+</body>
+</html>

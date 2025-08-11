@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Buddy - AI Study Simulation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <h1>🎓 Study Buddy</h1>
+            <p>Your Personalized AI Study Companion</p>
+        </div>
+
+        <div class="main-content">
+            <!-- Initial Setup Screen -->
+            <div class="setup-screen active">
+                <h2>How Would You Like to Study Today?</h2>
+                
+                <div class="study-mode-selection">
+                    <div class="mode-grid">
+                        <div class="mode-card" onclick="selectPrebuiltTopics()">
+                            <h3>📚 Quick Start</h3>
+                            <p>Choose from popular academic subjects like Biology, Chemistry, Physics, Math, History, etc.</p>
+                        </div>
+                        <div class="mode-card" onclick="selectCustomTopic()">
+                            <h3>🎯 Custom Topic</h3>
+                            <p>Study any topic you want - from professional skills to hobby subjects to exam preparation</p>
+                        </div>
+                        <div class="mode-card random-topic-card" onclick="selectRandomTopic()">
+                            <h3>🎲 Random Topic</h3>
+                            <p>Let AI surprise you with interesting topics from various fields - perfect for discovery learning!</p>
+                        </div>
+                        <div class="mode-card" onclick="selectStreamSpecific()">
+                            <h3>🎓 My Stream</h3>
+                            <p>Engineering, Medical, Business, Arts, Law - specialized content for your field of study</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Random Topic Selection Screen -->
+            <div class="random-topic-screen">
+                <h2>🎲 Discover Something New!</h2>
+                <p>Choose from these randomly selected topics, or generate new ones:</p>
+                
+                <div class="random-topics-container" id="randomTopicsContainer">
+                    <!-- Random topics will be inserted here -->
+                </div>
+                
+                <div class="random-topic-actions">
+                    <button class="secondary-btn" onclick="generateNewRandomTopics()">🔄 Generate New Topics</button>
+                    <button class="back-btn" onclick="goBack()">← Back</button>
+                </div>
+                
+                <div class="difficulty-selector" id="randomTopicDifficulty" style="display: none;">
+                    <h3>What's Your Current Level?</h3>
+                    <div class="difficulty-buttons">
+                        <div class="difficulty-btn" data-difficulty="beginner">
+                            <strong>Complete Beginner</strong><br>
+                            Just starting to learn
+                        </div>
+                        <div class="difficulty-btn" data-difficulty="intermediate">
+                            <strong>Some Knowledge</strong><br>
+                            Have basic understanding
+                        </div>
+                        <div class="difficulty-btn" data-difficulty="advanced">
+                            <strong>Advanced</strong><br>
+                            Want to deepen expertise
+                        </div>
+                    </div>
+                    <button class="start-btn" onclick="startRandomTopicStudy()" id="startRandomBtn" style="display: none;">Start Learning! 🚀</button>
+                </div>
+            </div>
+
+            <!-- Custom Topic Setup Screen -->
+            <div class="custom-setup-screen">
+                <h2>Tell Me What You Want to Study</h2>
+                
+                <div class="custom-topic-input">
+                    <input type="text" class="topic-input" id="customTopic" placeholder="Enter any topic you want to study...">
+                    <textarea class="answer-input" id="topicDescription" placeholder="Optional: Describe what specific aspects you want to focus on, your current level, or any particular goals..."></textarea>
+                </div>
+
+                <div class="example-topics">
+                    <h4>💡 Example Topics (click to use):</h4>
+                    <div class="topic-examples">
+                        <span class="topic-tag" onclick="fillTopic('Machine Learning')">Machine Learning</span>
+                        <span class="topic-tag" onclick="fillTopic('Digital Marketing')">Digital Marketing</span>
+                        <span class="topic-tag" onclick="fillTopic('Financial Planning')">Financial Planning</span>
+                        <span class="topic-tag" onclick="fillTopic('Photography')">Photography</span>
+                        <span class="topic-tag" onclick="fillTopic('JavaScript Programming')">JavaScript Programming</span>
+                        <span class="topic-tag" onclick="fillTopic('Public Speaking')">Public Speaking</span>
+                        <span class="topic-tag" onclick="fillTopic('Spanish Language')">Spanish Language</span>
+                        <span class="topic-tag" onclick="fillTopic('Yoga and Meditation')">Yoga & Meditation</span>
+                        <span class="topic-tag" onclick="fillTopic('Data Analysis')">Data Analysis</span>
+                        <span class="topic-tag" onclick="fillTopic('Creative Writing')">Creative Writing</span>
+                    </div>
+                </div>
+
+                <div class="difficulty-selector">
+                    <h3>What's Your Current Level?</h3>
+                    <div class="difficulty-buttons">
+                        <div class="difficulty-btn" data-difficulty="beginner">
+                            <strong>Complete Beginner</strong><br>
+                            Just starting to learn
+                        </div>
+                        <div class="difficulty-btn" data-difficulty="intermediate">
+                            <strong>Some Knowledge</strong><br>
+                            Have basic understanding
+                        </div>
+                        <div class="difficulty-btn" data-difficulty="advanced">
+                            <strong>Advanced</strong><br>
+                            Want to deepen expertise
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-format-selector">
+                    <h3>Assessment Format</h3>
+                    <div class="format-buttons">
+                        <div class="format-btn selected" data-format="mixed" onclick="selectQuestionFormat('mixed')">
+                            <strong>🎯 Comprehensive Assessment</strong>
+                            <span>Multiple choice and detailed response questions</span>
+                        </div>
+                        <div class="format-btn" data-format="mcq" onclick="selectQuestionFormat('mcq')">
+                            <strong>✅ Quick Assessment</strong>
+                            <span>Multiple choice questions with instant feedback</span>
+                        </div>
+                        <div class="format-btn" data-format="essay" onclick="selectQuestionFormat('essay')">
+                            <strong>✍️ In-Depth Analysis</strong>
+                            <span>Detailed written responses with AI evaluation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="back-btn" onclick="goBack()">← Back</button>
+                <button class="start-btn" onclick="startCustomStudy()">Start Studying! 🚀</button>
+            </div>
+
+            <!-- Study Screen -->
+            <div class="study-screen">
+                <div class="current-topic">
+                    <strong>Currently Studying:</strong> <span id="currentTopicDisplay">Your Topic</span>
+                    <span id="topicCategory" class="topic-category-badge"></span>
+                </div>
+
+                <div class="stats-panel">
+                    <div class="stat-card">
+                        <div class="stat-number" id="questionsAnswered">0</div>
+                        <div class="stat-label">Questions</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="correctAnswers">0</div>
+                        <div class="stat-label">Correct</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="currentStreak">0</div>
+                        <div class="stat-label">Streak</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="masteryLevel">0%</div>
+                        <div class="stat-label">Understanding</div>
+                    </div>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text" id="questionText">Analyzing your topic and generating comprehensive study material...</div>
+                    <textarea class="answer-input" id="answerInput" placeholder="Type your answer here... Feel free to explain your thinking!"></textarea>
+                    <button class="submit-btn" onclick="submitAnswer()">Submit Answer</button>
+                    <button class="hint-btn" onclick="getHint()" id="hintBtn">💡 Need a Hint?</button>
+                    <button class="next-btn" onclick="nextQuestion()" style="display: none;">Next Question</button>
+                    
+                    <div class="ai-response" id="aiResponse" style="display: none;">
+                        AI feedback will appear here...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
