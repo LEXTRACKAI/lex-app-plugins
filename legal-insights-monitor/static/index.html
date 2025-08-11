@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>LexTrack AI — Legal Insights Monitor</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background-color: #f4f6f9;
+      color: #222;
+      padding: 2rem;
+      margin: 0;
+    }
+    h1 {
+      color: #1f2d5a;
+    }
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 2rem;
+    }
+    input, button {
+      padding: 0.8rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-top: 0.5rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #1f2d5a;
+      color: white;
+      border: none;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2e3f73;
+    }
+    pre {
+      background: #f0f2f5;
+      padding: 1rem;
+      border-radius: 6px;
+      white-space: pre-wrap;
+    }
+    .footer {
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>LexTrack AI — Legal Insights Monitor</h1>
+    <p>Enter companies and legal keywords to receive AI-curated summaries and classifications.</p>
+
+    <label for="companies">Companies (comma-separated):</label>
+    <input type="text" id="companies" placeholder="e.g., Meta, Nvidia, TikTok" />
+
+    <label for="keywords">Keywords (comma-separated):</label>
+    <input type="text" id="keywords" placeholder="e.g., data privacy, antitrust, copyright" />
+
+    <button onclick="fetchInsights()">Fetch Insights</button>
+
+    <h3>Results:</h3>
+    <pre id="results">Waiting for input...</pre>
+  </div>
+
+  <div class="footer">
+    &copy; 2025 LexTrack AI — All rights reserved.
+  </div>
+
+  <script>
+    async function fetchInsights() {
+      const companies = document.getElementById("companies").value.split(",").map(x => x.trim());
+      const keywords = document.getElementById("keywords").value.split(",").map(x => x.trim());
+
+      document.getElementById("results").textContent = "Fetching insights...";
+
+      const res = await fetch("/api/insights", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ companies, keywords }),
+      });
+
+      const data = await res.json();
+      const formatted = data.insights?.map(i => `📘 [${i.topic}]\n${i.summary}`).join("\n\n");
+      document.getElementById("results").textContent = formatted || "No insights found.";
+    }
+  </script>
+</body>
+</html>
