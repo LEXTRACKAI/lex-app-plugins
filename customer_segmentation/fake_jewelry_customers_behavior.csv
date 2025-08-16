@@ -1,0 +1,51 @@
+CustomerID,TotalSpentUSD,PurchasesPerYear,AvgTransactionValueUSD,FavoriteProduct,PreferredMaterial,CommonSeason,LastPurchaseAmountUSD
+CUST-001,1935.25,11,175.93,Bracelet,Gold,Birthday,2350.09
+CUST-002,3024.57,10,302.46,Necklace,Diamond,Wedding Season,510.18
+CUST-003,384.61,8,48.08,Bracelet,Pearl,Valentine's Day,1034.44
+CUST-004,800.05,3,266.68,Bracelet,Platinum,Holiday,110.72
+CUST-005,4852.56,6,808.76,Bracelet,Platinum,Valentine's Day,52.3
+CUST-006,4961.84,1,4961.84,Earrings,Platinum,Wedding Season,947.51
+CUST-007,2671.31,9,296.81,Earrings,Silver,Wedding Season,909.13
+CUST-008,3098.08,10,309.81,Earrings,Pearl,Valentine's Day,187.66
+CUST-009,4871.4,3,1623.8,Ring,Gold,Holiday,1178.26
+CUST-010,4917.83,9,546.43,Watch,Platinum,Holiday,187.03
+CUST-011,3076.97,5,615.39,Earrings,Silver,Holiday,1378.97
+CUST-012,165.0,9,18.33,Watch,Diamond,Valentine's Day,2898.61
+CUST-013,4061.15,9,451.24,Necklace,Silver,Valentine's Day,97.1
+CUST-014,1231.38,7,175.91,Earrings,Silver,Valentine's Day,1849.49
+CUST-015,4182.66,3,1394.22,Watch,Diamond,Regular Purchase,2732.5
+CUST-016,1368.02,8,171.0,Watch,Platinum,Regular Purchase,2278.32
+CUST-017,2183.26,6,363.88,Bracelet,Diamond,Holiday,1662.8
+CUST-018,1005.79,2,502.89,Bracelet,Silver,Holiday,2336.64
+CUST-019,4703.54,4,1175.88,Necklace,Platinum,Birthday,1813.8
+CUST-020,4617.18,8,577.15,Ring,Pearl,Valentine's Day,1732.81
+CUST-021,2652.09,8,331.51,Watch,Platinum,Regular Purchase,2541.37
+CUST-022,3761.87,5,752.37,Earrings,Platinum,Regular Purchase,1780.92
+CUST-023,4829.75,9,536.64,Watch,Pearl,Holiday,924.01
+CUST-024,909.81,9,101.09,Necklace,Platinum,Birthday,2961.32
+CUST-025,3884.0,8,485.5,Necklace,Pearl,Wedding Season,66.29
+CUST-026,4095.76,1,4095.76,Watch,Platinum,Wedding Season,2148.46
+CUST-027,3971.86,11,361.08,Watch,Platinum,Wedding Season,268.43
+CUST-028,1856.48,9,206.28,Bracelet,Diamond,Wedding Season,2749.13
+CUST-029,4265.19,2,2132.59,Watch,Gold,Valentine's Day,331.46
+CUST-030,1917.01,8,239.63,Ring,Diamond,Birthday,2014.47
+CUST-031,2997.36,6,499.56,Necklace,Platinum,Regular Purchase,2667.28
+CUST-032,2413.85,5,482.77,Earrings,Silver,Regular Purchase,2916.55
+CUST-033,4259.68,5,851.94,Earrings,Platinum,Holiday,1705.77
+CUST-034,3877.74,7,553.96,Earrings,Gold,Birthday,169.28
+CUST-035,3582.25,10,358.23,Earrings,Pearl,Regular Purchase,124.99
+CUST-036,628.67,7,89.81,Bracelet,Silver,Wedding Season,1452.34
+CUST-037,2860.05,4,715.01,Ring,Platinum,Wedding Season,2727.32
+CUST-038,1321.53,11,120.14,Earrings,Gold,Holiday,649.03
+CUST-039,4719.98,7,674.28,Ring,Gold,Holiday,904.77
+CUST-040,889.98,2,444.99,Ring,Pearl,Valentine's Day,1891.84
+CUST-041,1548.61,5,309.72,Watch,Silver,Regular Purchase,2620.81
+CUST-042,4037.99,4,1009.5,Earrings,Pearl,Valentine's Day,2683.05
+CUST-043,2742.78,10,274.28,Ring,Platinum,Valentine's Day,410.16
+CUST-044,1845.86,1,1845.86,Ring,Pearl,Holiday,852.79
+CUST-045,3273.68,9,363.74,Watch,Gold,Wedding Season,2463.14
+CUST-046,4317.58,7,616.8,Watch,Platinum,Regular Purchase,535.73
+CUST-047,2717.04,5,543.41,Bracelet,Gold,Regular Purchase,2092.69
+CUST-048,1420.12,8,177.51,Ring,Diamond,Holiday,2831.58
+CUST-049,1683.69,8,210.46,Watch,Silver,Holiday,2123.91
+CUST-050,1881.79,1,1881.79,Watch,Gold,Holiday,799.05

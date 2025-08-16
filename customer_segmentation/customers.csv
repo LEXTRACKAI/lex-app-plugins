@@ -1,0 +1,6 @@
+CustomerID,Age,Gender,Location,TotalSpend,VisitFrequency,LastPurchaseDaysAgo,ProductCategories
+C001,28,F,NYC,120,5,2,"Electronics, Fashion"
+C002,45,M,LA,350,2,10,"Furniture"
+C003,22,F,NYC,80,8,1,"Fashion"
+C004,37,M,Chicago,150,3,6,"Electronics, Home Decor"
+C005,31,F,Boston,220,4,3,"Books, Fashion"
